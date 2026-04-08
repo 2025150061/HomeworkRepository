@@ -1,0 +1,47 @@
+h1 {font-family: tahoma, helvetica, sans-serif;
+    font-size: 30pt;
+    text-align: center;}
+
+p {
+    text-align: center;
+}
+.gotoleft {
+    text-align: left;
+}
+div {
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    margin: 2em auto;
+    width: 500px;
+}
+
+.shiftleft {
+    position: absolute;
+    left: 480px;
+}
+
+.gap {
+    margin-right: 6em;
+}
+.input-box {
+    width: 200px;
+    height: 20px;
+    font-size: 15px;
+}
+.signup {
+    border: none;
+    background-color: lightgreen;
+    padding-top: 10px;
+    font-size: 20px;
+    margin: 1em;
+ 
+}
+
+.cancel {
+    border: none;
+    background-color: red;
+    color: white;
+    padding-top: 10px;
+    font-size: 20px;
+}
