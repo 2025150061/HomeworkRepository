@@ -5,21 +5,12 @@ h1 {font-family: tahoma, helvetica, sans-serif;
 p {
     text-align: center;
 }
-.gotoleft {
-    text-align: left;
-}
+
 div {
-    border-color: black;
-    border-style: solid;
-    border-width: 2px;
     margin: 2em auto;
+    border: 2px solid black;
     width: 500px;
     height: auto;
-}
-
-.shiftleft {
-    position: absolute;
-    left: 480px;
 }
 
 .gap {
@@ -29,6 +20,7 @@ div {
     width: 200px;
     height: 20px;
     font-size: 15px;
+    
 }
 .signup {
     border: none;
