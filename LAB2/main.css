@@ -12,7 +12,9 @@ div {
     width: 500px;
     height: auto;
 }
-
+.smallgap {
+    margin-right: .1em;
+}
 .gap {
     margin-right: 6em;
 }
