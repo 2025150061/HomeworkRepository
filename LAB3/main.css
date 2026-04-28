@@ -1,0 +1,206 @@
+* {
+    box-sizing: border-box;
+    
+}
+
+.moving-header {
+    display: inline-block;
+    animation-name: movingtext;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+
+}
+
+@keyframes movingtext {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+.container {
+    width: 1020px;
+   
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.nav-item {
+    padding-left: 5px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15pt;
+}
+
+.movie-align {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: space-between;
+}
+
+.movies {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    width: 23%;
+    height: 500px;
+    margin: 20px auto;
+}
+
+.movies div {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+
+.movies div>img {
+    position: relative;
+    bottom: -2ex;
+    margin: auto 10px;
+    width: 100px;
+    height: 150px;
+}
+
+hr {
+    border: none;
+    border-top: 3px solid black;
+    margin: 20px 0;
+}
+
+.about {
+    column-count: 2;
+    column-gap: 30px;
+    column-rule: 1px outset black;
+}
+.extension {
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.extension img {
+    width: 100%;
+    height: 100%;
+    transition: transform 2s ease;
+}
+
+.extension:hover img {
+    transform: scale(1.2);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;        
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: black;
+    font-size: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+.extension:hover .image-overlay {
+    opacity: 1;
+}
+
+@media screen and (max-width: 800px) {
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .movies {
+        width: 48%;
+    }
+    p {
+        text-align: center;
+    }
+    .moving-header {
+        display: block;
+        text-align: center;
+    }
+    .about {
+        column-count: 1;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .movies {
+        width: 100%;
+    }
+    p {
+        text-align: center;
+    }
+    .moving-header {
+        display: block;
+        text-align: center;
+    }
+    .about {
+        column-count: 1;
+    }
+}
+
+.signup-form h1 {font-family: tahoma, helvetica, sans-serif;
+    font-size: 30pt;
+    text-align: center;}
+
+.signup-form p {
+    text-align: center;
+}
+
+.signup-form div {
+    margin: 2em auto;
+    border: 2px solid black;
+    width: 500px;
+    height: auto;
+}
+.smallgap {
+    margin-right: .1em;
+}
+.gap {
+    margin-right: 6em;
+}
+.input-box {
+    width: 200px;
+    height: 20px;
+    font-size: 15px;
+    
+}
+.signup {
+    border: none;
+    background-color: lightgreen;
+    padding: 5px 15px;
+    font-size: 20px;
+    margin: 1em;
+ 
+}
+
+.cancel {
+    border: none;
+    background-color: red;
+    color: white;
+    padding: 5px 15px;
+    font-size: 20px;
+}
