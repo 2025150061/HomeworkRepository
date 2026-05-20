@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script>
+        let allMovies = [];       
+        let filteredMovies = [];  
+        let renderIndex = 0;      
+        const STEP = 6;          
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch("product.json")
+                .then(res => res.json())
+                .then(data => {
+                    allMovies = data;
+                    filteredMovies = data;
+                    appendMovies();
+                })
+                .catch(err => console.error("fetch 실패:", err));
+
+            document.getElementById('filter').addEventListener('click', applyFilter);
+
+            document.querySelectorAll('input[name="sort"]').forEach(radio => {
+                radio.addEventListener('change', applyFilter);
+            });
+
+            window.addEventListener('scroll', () => {
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
+                    appendMovies();
+                }
+            });
+        });
+
+        function applyFilter() {
+            const keyword = document.getElementById('keyword').value.toLowerCase();
+            const sortVal = document.querySelector('input[name="sort"]:checked')?.value;
+
+            let result = allMovies.filter(m =>
+                m.overview.toLowerCase().includes(keyword)
+            );
+
+            if (sortVal === 'rating-desc') result.sort((a, b) => b.vote_count - a.vote_count);
+            if (sortVal === 'rating-asc')  result.sort((a, b) => a.vote_count - b.vote_count);
+            if (sortVal === 'date-desc')   result.sort((a, b) => new Date(b.revenue) - new Date(a.revenue));
+            if (sortVal === 'date-asc')    result.sort((a, b) => new Date(a.revenue) - new Date(b.revenue));
+
+            filteredMovies = result;
+            renderIndex = 0;
+            document.getElementById('card-area').innerHTML = '';
+            appendMovies();
+        }
+
+        function appendMovies() {
+            const area = document.getElementById('card-area');
+
+            for (let i = 0; i < STEP; i++) {
+                const m = filteredMovies[renderIndex % filteredMovies.length];
+                const cardIndex = renderIndex + 1;
+
+                const card = document.createElement('div');
+                card.className = 'movie-card';
+                card.innerHTML = `
+                    <div class="img-wrapper">
+                        <img src="${m.img}" alt="${m.overview}">
+                        <div class="overlay">${m.popularity}</div>
+                    </div>
+                    <p>${m.overview}</p>
+                    <p>📅 ${m.revenue}</p>
+                    <p>⭐ ${m.vote_count}/10</p>
+                `;
+                area.appendChild(card);
+                renderIndex++;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="moving-header">인프밍 영화 정보 사이트입니다.</h1>
+        <nav class="navigation">
+            <nav class="nav-item"><a href="index.html">메인페이지</a></nav>
+            <nav class="nav-item"><a href="login.html">로그인</a></nav>
+            <nav class="nav-item"><a href="signup.html">회원가입</a></nav>
+        </nav>
+        <hr />
+        <p>
+            <input type="text" id="keyword" style="width: 90%" placeholder="키워드를 입력하세요.">
+            <button id="filter">Filter results</button>
+        </p>
+
+        <div class="main">
+            <p><b>Movies</b></p>
+            <hr />
+            <div id="movie-lists">
+                <div class="movie-layout">
+                    <div class="sort-box">
+                        <p><b>정렬 기준</b></p>
+                        <label><input type="radio" name="sort" value="rating-desc"> 평점 내림차순</label><br>
+                        <label><input type="radio" name="sort" value="rating-asc"> 평점 오름차순</label><br>
+                        <label><input type="radio" name="sort" value="date-desc"> 개봉 내림차순</label><br>
+                        <label><input type="radio" name="sort" value="date-asc"> 개봉 오름차순</label>
+                    </div>
+                    <div id="card-area"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
